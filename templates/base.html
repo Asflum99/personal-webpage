@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+  <head>
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme) {
+          document.documentElement.setAttribute("data-theme", savedTheme);
+        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      })();
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="{% block meta_description %}Programador autodidacta. Comparto mi proceso de aprendizaje.{% endblock meta_description %}">
+    <title>
+      {% block title %}
+        Solo soy un título.
+      {% endblock title %}
+    </title>
+    <!-- SVG -->
+    <link rel="icon"
+          href="{% static 'images/favicon/mouse.svg' %}"
+          type="image/svg+xml">
+    <!-- PNG for modern browsers -->
+    <link rel="icon"
+          href="{% static 'images/favicon/mouse.png' %}"
+          type="image/png">
+    <!-- Classic favicon -->
+    <link rel="icon"
+          href="{% static 'images/favicon/mouse.ico' %}"
+          type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  </head>
+  <body class="{% block body_class %}{% endblock body_class %}">
+    <main class="wrapper">
+      <header class="navbar">
+        <div class="navbar-inner">
+          <div class="navbar-title">
+            <div class="navbar-title-content">
+              <a class="link-light text-decoration-none btn" href="{% url 'home' %}">
+                <span>Alvaro Flores</span>
+              </a>
+            </div>
+          </div>
+          <div class="navbar-wrapper">
+            <div class="navbar-container">
+              <section class="navbar-section">
+                <div class="btn-group">
+                  <button type="button"
+                          class="btn btn-secondary dropdown-toggle"
+                          data-bs-toggle="dropdown"
+                          data-bs-display="static"
+                          aria-expanded="false"
+                          aria-label="Abrir menú desplegable">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="16"
+                         height="16"
+                         fill="currentColor"
+                         class="list"
+                         viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+                    </svg>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+                    <li>
+                      <a class="dropdown-item" id="learning" href="{% url 'learning' %}">Aprendizaje</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" id="notes" href="{% url 'notes' %}">Notas</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" id="about_me" href="{% url 'about_me' %}">Acerca de mí</a>
+                    </li>
+                  </ul>
+                </div>
+                <nav class="navbar-menu nav-items">
+                  <a class="link-light text-decoration-none pages btn learning"
+                     href="{% url 'learning' %}">Aprendizaje</a>
+                  <a class="link-light text-decoration-none pages btn notes"
+                     href="{% url 'notes' %}">Notas</a>
+                  <a class="link-light text-decoration-none pages btn about-me"
+                     href="{% url 'about_me' %}">Acerca de mí</a>
+                </nav>
+                <nav class="navbar-menu socials">
+                  <button id="theme-toggle"
+                          class="btn"
+                          aria-label="Cambiar entre tema oscuro y tema claro">
+                    {% comment %} Colocar ambos botones para el cambio de tema, pero ocultar uno y mostrar el otro {% endcomment %}
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         fill="currentColor"
+                         class="sun"
+                         viewBox="0 0 16 16">
+                      <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         fill="currentColor"
+                         class="moon"
+                         viewBox="0 0 16 16">
+                      <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278" />
+                    </svg>
+                  </button>
+                </nav>
+              </section>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="main-wrapper">
+        <div class="main-container">
+          <main class="main-content">
+            {% block content %}
+            {% endblock content %}
+          </main>
+        </div>
+        <footer class="footer">
+          <section class="footer-section">
+            <nav class="footer-menu-buttons">
+              {% comment %} Colocar ambos botones para el cambio de tema, pero ocultar uno y mostrar el otro {% endcomment %}
+              <a class="btn btn-dark"
+                 href="https://github.com/Asflum99"
+                 target="_blank"
+                 title="GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     fill="currentColor"
+                     class="social-icon-github"
+                     width="20"
+                     height="20"
+                     shape-rendering="geometricPrecision"
+                     viewBox="0 0 640 640">
+                  <path d="M319.988 7.973C143.293 7.973 0 151.242 0 327.96c0 141.392 91.678 261.298 218.826 303.63 16.004 2.964 21.886-6.957 21.886-15.414 0-7.63-.319-32.835-.449-59.552-89.032 19.359-107.8-37.772-107.8-37.772-14.552-36.993-35.529-46.831-35.529-46.831-29.032-19.879 2.209-19.442 2.209-19.442 32.126 2.245 49.04 32.954 49.04 32.954 28.56 48.922 74.883 34.76 93.131 26.598 2.882-20.681 11.15-34.807 20.315-42.803-71.08-8.067-145.797-35.516-145.797-158.14 0-34.926 12.52-63.485 32.965-85.88-3.33-8.078-14.291-40.606 3.083-84.674 0 0 26.87-8.61 88.029 32.8 25.512-7.075 52.878-10.642 80.056-10.76 27.2.118 54.614 3.673 80.162 10.76 61.076-41.386 87.922-32.8 87.922-32.8 17.398 44.08 6.485 76.631 3.154 84.675 20.516 22.394 32.93 50.953 32.93 85.879 0 122.907-74.883 149.93-146.117 157.856 11.481 9.921 21.733 29.398 21.733 59.233 0 42.792-.366 77.28-.366 87.804 0 8.516 5.764 18.473 21.992 15.354 127.076-42.354 218.637-162.274 218.637-303.582 0-176.695-143.269-319.988-320-319.988l-.023.107z" />
+                </svg>
+                <span>GitHub</span>
+              </a>
+              <a class="btn btn-dark"
+                 href="https://www.linkedin.com/in/alvaro-flores-lucano/"
+                 target="_blank"
+                 title="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     fill="currentColor"
+                     class="social-icon-linkedin"
+                     width="20"
+                     height="20"
+                     shape-rendering="geometricPrecision"
+                     viewBox="0 0 512 509.64">
+                  <rect class="rect" width="512" height="509.64" rx="115.61" ry="115.61" />
+                  <path class="path" fill="currentColor" d="M204.97 197.54h64.69v33.16h.94c9.01-16.16 31.04-33.16 63.89-33.16 68.31 0 80.94 42.51 80.94 97.81v116.92h-67.46l-.01-104.13c0-23.81-.49-54.45-35.08-54.45-35.12 0-40.51 25.91-40.51 52.72v105.86h-67.4V197.54zm-38.23-65.09c0 19.36-15.72 35.08-35.08 35.08-19.37 0-35.09-15.72-35.09-35.08 0-19.37 15.72-35.08 35.09-35.08 19.36 0 35.08 15.71 35.08 35.08zm-70.17 65.09h70.17v214.73H96.57V197.54z" />
+                </svg>
+                <span>LinkedIn</span>
+              </a>
+            </nav>
+            <div class="footer-made-by">Hecho por Alvaro Flores</div>
+          </section>
+        </footer>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+              integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+              crossorigin="anonymous"
+              defer></script>
+      <script src="{% static 'js/main.js' %}" defer></script>
+    </main>
+    <button id="backtotop-button"
+            class="back-to-top"
+            aria-label="Regresar al inicio de la página">
+      <svg width="800px"
+           height="800px"
+           viewBox="0 0 24 24"
+           fill="none"
+           xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 5V19M12 5L6 11M12 5L18 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+  </body>
+</html>

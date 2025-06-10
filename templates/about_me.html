@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}
+    Yo | Alvaro Flores
+{% endblock title %}
+{% block body_class %}
+    page-about-me
+{% endblock body_class %}
+{% block content %}
+    <div class="main-article">
+        <h1>{{ about.title }}</h1>
+        {{ about.body|safe }}
+    </div>
+{% endblock content %}

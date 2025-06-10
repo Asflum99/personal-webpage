@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}
+    Apuntes personales | Alvaro Flores
+{% endblock title %}
+{% block body_class %}
+    page-notes
+{% endblock body_class %}
+{% block content %}
+    <header class="intro">
+        <h1>Notas</h1>
+        <p>Aquí escribo sobre temas variados y que no pertenecen a la programación.</p>
+    </header>
+    <section class="year">
+        {% for year, months in grouped_entries.items %}
+            <h2>{{ year }}</h2>
+            {% for month, entries in months.items %}
+                <section class="month">
+                    <h3>{{ month }}</h3>
+                    {% for entry in entries %}
+                        <div class="entry">
+                            <a class="post{% if forloop.last %} first-post{% endif %}" href="{{ entry.get_absolute_url }}">
+                                <span>{{ entry.title }}</span>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </section>
+            {% endfor %}
+        {% endfor %}
+    </section>
+{% endblock content %}

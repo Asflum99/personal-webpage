@@ -1,0 +1,8 @@
+{% extends "admin/index.html" %}
+
+{% block content %}
+<p>
+  <a href="{% url 'two_factor:setup' %}" class="button">Configurar verificación en dos pasos</a>
+</p>
+{{ block.super }}
+{% endblock content %}

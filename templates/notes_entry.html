@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ object.title }}
+{% endblock title %}
+{% block body_class %}
+    page-notes
+{% endblock body_class %}
+{% block content %}
+    <header class="title">
+        <h1>{{ object.title }}</h1>
+    </header>
+    <div class="main-article">{{ object.body|safe }}</div>
+{% endblock content %}

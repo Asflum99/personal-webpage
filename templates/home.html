@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}
+    Alvaro Flores
+{% endblock title %}
+{% block body_class %}
+    page-home
+{% endblock body_class %}
+{% block content %}
+    <header class="intro">
+        <h1>¡Hola, soy Alvaro!</h1>
+        <p>
+            Soy un programador autodidacta y he creado este espacio para compartir los conocimientos que voy adquiriendo. Tal vez encuentres aquí algo nuevo que también te sirva a ti.
+        </p>
+        <p>
+            Me encantan los videojuegos, toco batería y de vez en cuando entro a RateYourMusic para descubrir nuevas bandas o artistas.
+        </p>
+    </header>
+    <section class="section-index">
+        <header class="heading">
+            <div>
+                <h2>
+                    <span>Aprendizaje</span>
+                    <a class="arrow-icon"
+                       href="{% url 'learning' %}"
+                       aria-label="Ver todas las entradas">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             class="icon"
+                             viewBox="0 0 20 20"
+                             fill="currentColor">
+                            <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </h2>
+                <div class="description">Aquí comparto todo lo nuevo que voy aprendiendo.</div>
+            </div>
+        </header>
+        <div class="posts">
+            {% for post in learning_posts %}
+                <a class="post{% if forloop.last %} first-post{% endif %}"
+                   href="{{ post.get_absolute_url }}">
+                    <span>{{ post.title }}</span>
+                    <time>{{ post.date.date|date:"F Y" }}</time>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+    <section class="section-index">
+        <header class="heading">
+            <div>
+                <h2>
+                    <span>Notas</span>
+                    <a class="arrow-icon"
+                       href="{% url 'notes' %}"
+                       aria-label="Ver todas las entradas">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             class="icon"
+                             viewBox="0 0 20 20"
+                             fill="currentColor">
+                            <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </h2>
+                <div class="description">Aquí escribo sobre temas ajenos a la programación.</div>
+            </div>
+        </header>
+        <div class="posts">
+            {% for post in notes_posts %}
+                <a class="post{% if forloop.last %} first-post{% endif %}"
+                   href="{{ post.get_absolute_url }}">
+                    <span>{{ post.title }}</span>
+                    <time>{{ post.date.date|date:"F Y" }}</time>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock content %}

@@ -1,0 +1,7 @@
+on: [push]
+
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Este es un repositorio público."
